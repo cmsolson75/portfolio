@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cameron Olson | AI Research Engineer</title>
+    
+    <!-- SEO Meta Tags - Update these! -->
+    <meta name="description" content="Cameron Olson - AI Research Engineer specializing in generative audio, speech synthesis, and scalable ML infrastructure. Lead AI Research Engineer at VCL.">
+    <meta name="keywords" content="AI, Machine Learning, Audio Synthesis, Speech Synthesis, PyTorch, Deep Learning">
+    <meta name="author" content="Cameron Olson">
+    
+    <!-- Open Graph / Social Media - Update these! -->
+    <meta property="og:title" content="Cameron Olson | AI Research Engineer">
+    <meta property="og:description" content="AI Research Engineer specializing in generative audio, speech synthesis, and scalable ML infrastructure.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cameronolson.dev"> <!-- UPDATE THIS -->
+    
+    <!-- Favicon - Add your own! -->
+    <!-- <link rel="icon" type="image/png" href="/favicon.png"> -->
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
+    
+    <style>
+        /*
+        ========================================
+        CSS VARIABLES - Easy to customize colors
+        ========================================
+        */
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --bg-card: #18181b;
+            --text-primary: #fafafa;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --accent: #c4a7ff;
+            --accent-dim: #8b5cf6;
+            --border: #27272a;
+            --gradient-1: #c4a7ff;
+            --gradient-2: #7dd3fc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Subtle grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.25rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(10, 10, 11, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        nav.scrolled {
+            border-bottom-color: var(--border);
+        }
+
+        .logo {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 400;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 3rem 4rem;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 400;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-bio {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero-bio strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .hero-bio .accent {
+            color: var(--accent);
+        }
+
+        .hero-location {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .hero-location svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .hero-link:hover {
+            color: var(--text-primary);
+            border-color: var(--text-muted);
+        }
+
+        .hero-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Section styles */
+        section {
+            padding: 5rem 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Featured Project */
+        .featured-project {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .featured-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .featured-project h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-company {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .featured-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .featured-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-item {
+            padding: 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+        }
+
+        .highlight-item h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-item p {
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 0.625rem 1.25rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.2s ease;
+        }
+
+        .project-link:hover {
+            border-color: var(--accent);
+            background: var(--bg-secondary);
+        }
+
+        .project-link svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Experience Timeline */
+        .experience-list {
+            border-left: 1px solid var(--border);
+            padding-left: 2rem;
+            margin-left: 0.5rem;
+        }
+
+        .experience-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+
+        .experience-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.25rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .experience-item h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .experience-date {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .experience-company {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Education */
+        .education-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .education-item h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            margin-bottom: 0.25rem;
+        }
+
+        .education-item .school {
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--text-muted);
+        }
+
+        .project-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+        }
+
+        .project-card-link {
+            color: var(--text-muted);
+            transition: color 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .project-card-link:hover {
+            color: var(--text-primary);
+        }
+
+        .project-card-link svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .project-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .project-tech span {
+            padding: 0.2rem 0.5rem;
+            background: var(--bg-primary);
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Research Section */
+        .research-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .research-card:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .research-card h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+        }
+
+        .research-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.65;
+        }
+
+        .research-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .research-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s ease;
+        }
+
+        .research-link:hover {
+            color: var(--text-primary);
+        }
+
+        .research-link svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Creative Work */
+        .creative-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .creative-item {
+            padding: 1.25rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: border-color 0.2s ease;
+            display: block;
+        }
+
+        .creative-item:hover {
+            border-color: var(--text-muted);
+        }
+
+        .creative-item h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: var(--text-primary);
+        }
+
+        .creative-item p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .creative-item .tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--bg-secondary);
+            padding: 5rem 3rem;
+        }
+
+        .about-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+        }
+
+        .about-text h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.35rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+            margin-top: 2rem;
+        }
+
+        .about-text h3:first-child {
+            margin-top: 0;
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-sidebar h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            margin-bottom: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .about-sidebar h4:first-child {
+            margin-top: 0;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            padding: 0.35rem 0.75rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            padding: 5rem 3rem;
+        }
+
+        .contact-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            font-weight: 400;
+            margin-bottom: 0.75rem;
+        }
+
+        .contact p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.75rem 1rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent);
+        }
+
+        .contact-link svg {
+            width: 16px;
+            height: 16px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        footer {
+            padding: 1.5rem 3rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section, .hero, .about, .contact {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .featured-project {
+                padding: 1.5rem;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .experience-list {
+                padding-left: 1.5rem;
+            }
+
+            .creative-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    ============================================
+    NAVIGATION
+    Update links if you add new sections
+    ============================================
+    -->
+    <nav id="navbar">
+        <div class="logo">Cameron Olson</div>
+        <ul class="nav-links">
+            <li><a href="#work">Work</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#research">Research</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- 
+    ============================================
+    HERO SECTION
+    Your name, bio, and contact links
+    ============================================
+    -->
+    <section class="hero">
+        <h1>Cameron Olson</h1>
+        
+        <!-- BIO - Edit this to change your intro -->
+        <p class="hero-bio">
+            <strong>AI Research Engineer</strong> at <span class="accent">VCL</span>. 
+            Specializing in generative audio, speech synthesis, and scalable ML infrastructure. 
+            I build the tools that help musicians create.
+        </p>
+        
+        <p class="hero-location">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+            </svg>
+            Seattle, WA
+        </p>
+        
+        <!-- CONTACT LINKS - Update URLs -->
+        <div class="hero-links">
+            <a href="mailto:cmsolson75@gmail.com" class="hero-link">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                </svg>
+                Email
+            </a>
+            <a href="https://github.com/cmsolson75" class="hero-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                GitHub
+            </a>
+            <a href="https://linkedin.com/in/cameron-olson" class="hero-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                LinkedIn
+            </a>
+        </div>
+    </section>
+
+    <!-- 
+    ============================================
+    WORK SECTION
+    Featured project + Experience timeline
+    ============================================
+    -->
+    <section id="work">
+        <h2 class="section-title">Work</h2>
+        
+        <!-- FEATURED PROJECT -->
+        <div class="featured-project">
+            <div class="featured-label">Featured Project</div>
+            <h3>AM I AUDIO Choir Synthesis R&D</h3>
+            <div class="featured-company">VCL · Lead AI Research Engineer</div>
+            <p class="featured-description">
+                Led the development of AM I AUDIO's flagship choir synthesis engine—a neural network system that transforms a single voice into realistic multi-voice choral arrangements. Architected both the core synthesis model and the scale-aware Harmony Engine that enables musically intelligent voice generation.
+            </p>
+            <div class="featured-highlights">
+                <div class="highlight-item">
+                    <h4>Data Pipeline</h4>
+                    <p>Built augmentation systems extending pitch range by 4+ octaves</p>
+                </div>
+                <div class="highlight-item">
+                    <h4>Infrastructure</h4>
+                    <p>Scalable GCP training with PyTorch, Lightning & W&B</p>
+                </div>
+                <div class="highlight-item">
+                    <h4>Deployment</h4>
+                    <p>FastAPI on Cloud Run / Vertex AI with GPU acceleration</p>
+                </div>
+                <div class="highlight-item">
+                    <h4>On-Device</h4>
+                    <p>ONNX export pipeline for VST plugin integration</p>
+                </div>
+            </div>
+            <a href="https://amiaudio.io/" class="project-link" target="_blank" rel="noopener noreferrer">
+                View AM I AUDIO
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
+            </a>
+        </div>
+
+        <!-- EXPERIENCE TIMELINE -->
+        <div class="experience-list">
+            <!-- Experience Item 1 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Lead AI Research Engineer</h3>
+                    <span class="experience-date">Nov 2023 — Present</span>
+                </div>
+                <div class="experience-company">VCL, Seattle</div>
+                <p class="experience-description">
+                    Leading DSP/model team. Architected Choir Synthesis and Harmony Engine. Built scalable GCP training workflows and FastAPI deployment pipelines with GPU acceleration.
+                </p>
+            </div>
+
+            <!-- Experience Item 2 -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <h3>Assistant Professor, Electronic Production & Design</h3>
+                    <span class="experience-date">Nov 2024 — Mar 2025</span>
+                </div>
+                <div class="experience-company">Berklee College of Music</div>
+                <p class="experience-description">
+                    Teaching MTEC-345: Machine Learning for Musicians. Mentoring student research projects and delivering lectures on ML applications in audio and music technology.
+                </p>
+            </div>
+        </div>
+
+        <!-- EDUCATION -->
+        <div class="education-item">
+            <h3>B.A. Electronic Production & Design</h3>
+            <div class="school">Berklee College of Music</div>
+            <p>Concentration in DSP & AI Music Systems. Minor in coding with ML focus. Capstone research on Audio Diffusion Synthesis supervised by Dr. Richard Boulanger.</p>
+        </div>
+    </section>
+
+    <!-- 
+    ============================================
+    PROJECTS SECTION
+    Personal/side projects
+    ============================================
+    -->
+    <section id="projects">
+        <h2 class="section-title">Projects</h2>
+        
+        <div class="projects-grid">
+            <!-- Project 1: NanoGrad -->
+            <div class="project-card">
+                <div class="project-card-header">
+                    <h3>NanoGrad</h3>
+                    <a href="https://github.com/cmsolson75/nanograd" class="project-card-link" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p>
+                    A PyTorch clone built from scratch in NumPy. Complete autograd engine with neural network wrapper for deep learning training. All numerical operations tested within 1e-6 accuracy against PyTorch. Inspired by micrograd and tinygrad.
+                </p>
+                <div class="project-tech">
+                    <span>Python</span>
+                    <span>NumPy</span>
+                    <span>Autograd</span>
+                    <span>Deep Learning</span>
+                </div>
+            </div>
+
+            <!-- Project 2: Loan Approval System -->
+            <div class="project-card">
+                <div class="project-card-header">
+                    <h3>Loan Approval System</h3>
+                    <a href="https://github.com/cmsolson75/loan-approval-system" class="project-card-link" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p>
+                    Educational reference architecture for ML deployment. Intentionally simple model—the challenge is everything else: PyTorch → ONNX → FastAPI → Go gateway → Docker Compose → VPS. Built to answer the question students always ask: "How do you actually deploy a model?"
+                </p>
+                <div class="project-tech">
+                    <span>PyTorch</span>
+                    <span>ONNX</span>
+                    <span>FastAPI</span>
+                    <span>Go</span>
+                    <span>Docker</span>
+                    <span>HTMX</span>
+                </div>
+            </div>
+
+            <!-- Project 3: Neural Probabilistic Language Model -->
+            <div class="project-card">
+                <div class="project-card-header">
+                    <h3>Neural Probabilistic Language Model</h3>
+                    <a href="https://github.com/cmsolson75/NeuralProbabilisticLanguageModel" class="project-card-link" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p>
+                    Implementation of Bengio's 2003 paper from scratch. Custom SGD optimizer with momentum and weight decay, Xavier initialization, trainer with learning rate decay. Minimal PyTorch—only autograd and CrossEntropyLoss. Includes hyperparameter tuning via random search.
+                </p>
+                <div class="project-tech">
+                    <span>PyTorch</span>
+                    <span>Language Models</span>
+                    <span>Paper Implementation</span>
+                </div>
+            </div>
+
+            <!-- Project 4: DenseNet-BC -->
+            <div class="project-card">
+                <div class="project-card-header">
+                    <h3>DenseNet-BC</h3>
+                    <a href="https://github.com/cmsolson75/DenseNet" class="project-card-link" target="_blank" rel="noopener noreferrer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </a>
+                </div>
+                <p>
+                    Reproducible DenseNet-BC implementation with PyTorch Lightning, Hydra configs, and W&B logging. Achieved 4.54% validation error on CIFAR-10. Full test suite with shape tests, forward-pass validation, and training smoke tests.
+                </p>
+                <div class="project-tech">
+                    <span>PyTorch Lightning</span>
+                    <span>Hydra</span>
+                    <span>W&B</span>
+                    <span>Computer Vision</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+    ============================================
+    RESEARCH & CREATIVE SECTION
+    Publications, thesis, competitions
+    ============================================
+    -->
+    <section id="research">
+        <h2 class="section-title">Research & Creative</h2>
+
+        <!-- Thesis -->
+        <div class="research-card">
+            <h3>Exploring Audio Diffusion Synthesis</h3>
+            <div class="research-meta">Undergraduate Thesis · Berklee College of Music · Supervised by Dr. Richard Boulanger</div>
+            <p>
+                Research into Raw Audio Neural Network Generation, exploring diffusion models for sound design. Built a dataset of 20,000+ drum samples, trained custom models using Dance Diffusion (Harmonai), and created original music demonstrating practical applications. Presented through a research paper, showcase video, and master class at Berklee.
+            </p>
+            <div class="research-links">
+                <!-- UPDATE THESE LINKS -->
+                <a href="#" class="research-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                    </svg>
+                    Research Paper
+                </a>
+                <a href="#" class="research-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.348a1.125 1.125 0 010 1.971l-11.54 6.347a1.125 1.125 0 01-1.667-.985V5.653z" />
+                    </svg>
+                    Video Showcase
+                </a>
+                <a href="#" class="research-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
+                    </svg>
+                    Stay With Me
+                </a>
+            </div>
+        </div>
+
+        <!-- Publication -->
+        <div class="research-card">
+            <div class="research-meta">AES International Symposium on AI and the Musician · June 2024 · Boston, MA</div>
+            <h3>PCVAE: A Pitch Conditioning Framework for Generative Audio Synthesis</h3>
+            <p>
+                Framework for conditioning variational autoencoders on pitch information to enable more controlled and musically relevant audio generation.
+            </p>
+            <a href="http://www.aes.org/e-lib" class="research-link" target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
+                </svg>
+                View in AES E-Library
+            </a>
+        </div>
+
+        <!-- AI Song Contest Entries -->
+        <div class="creative-grid">
+            <a href="https://www.aisongcontest.com/participants-2025/dadabots" class="creative-item" target="_blank" rel="noopener noreferrer">
+                <span class="tag">AI Song Contest 2025 · Finalist</span>
+                <h4>Dadabots Collaboration</h4>
+                <p>Vocal design for finalist entry in the international AI Song Contest, collaborating with the Dadabots collective.</p>
+            </a>
+            <a href="https://www.aisongcontest.com/participants-2024/almost-human" class="creative-item" target="_blank" rel="noopener noreferrer">
+                <span class="tag">AI Song Contest 2024</span>
+                <h4>Almost Human</h4>
+                <p>Original AI-assisted composition exploring the boundaries of human and machine creativity in music production.</p>
+            </a>
+            <a href="https://www.aisongcontest.com/participants-2023/almost-human" class="creative-item" target="_blank" rel="noopener noreferrer">
+                <span class="tag">AI Song Contest 2023</span>
+                <h4>Almost Human</h4>
+                <p>Continued exploration of AI-driven music creation and generative audio techniques.</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- 
+    ============================================
+    ABOUT SECTION
+    Detailed bio and skills
+    ============================================
+    -->
+    <section class="about" id="about">
+        <div class="about-inner">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm an AI Research Engineer and musician based in Seattle. My career is defined by a single mission: bridging the gap between theoretical deep learning and practical musical expression. I don't just research algorithms—I design systems that fit into the creative workflow of working artists.
+                    </p>
+                    
+                    <h3>What I'm Building</h3>
+                    <p>
+                        As Lead AI Research Engineer at VCL, I lead the DSP and modeling team. I architected our flagship Choir Synthesis engine—a generative system that transforms a single voice into a multi-voice choir with a scale-aware Harmony Engine.
+                    </p>
+                    <p>
+                        Beyond the models, I build the infrastructure that makes them possible: scalable training workflows on Google Cloud Platform using PyTorch and Hydra, and data pipelines that extend audio pitch ranges by over four octaves.
+                    </p>
+
+                    <h3>Research & Education</h3>
+                    <p>
+                        My foundation is in the academic study of music and code. I hold a degree in Electronic Production and Design from Berklee College of Music, where I researched Audio Diffusion Synthesis under Dr. Richard Boulanger.
+                    </p>
+                    <p>
+                        I returned to Berklee as an Assistant Professor to teach "Machine Learning for Musicians" (MTEC-345), helping the next generation of producers leverage AI. My independent research on PCVAE, a pitch-conditioning framework for generative audio, was published at the AES International Symposium on AI and the Musician.
+                    </p>
+                </div>
+                
+                <!-- SKILLS SIDEBAR - Easy to update -->
+                <div class="about-sidebar">
+                    <h4>Languages</h4>
+                    <div class="skill-list">
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">GoLang</span>
+                        <span class="skill-item">C++</span>
+                    </div>
+
+                    <h4>ML & Data</h4>
+                    <div class="skill-list">
+                        <span class="skill-item">PyTorch</span>
+                        <span class="skill-item">Lightning</span>
+                        <span class="skill-item">Hydra</span>
+                        <span class="skill-item">W&B</span>
+                        <span class="skill-item">ONNX</span>
+                    </div>
+
+                    <h4>Infrastructure</h4>
+                    <div class="skill-list">
+                        <span class="skill-item">GCP</span>
+                        <span class="skill-item">Vertex AI</span>
+                        <span class="skill-item">Cloud Run</span>
+                        <span class="skill-item">FastAPI</span>
+                        <span class="skill-item">Docker</span>
+                    </div>
+
+                    <h4>Audio</h4>
+                    <div class="skill-list">
+                        <span class="skill-item">DSP</span>
+                        <span class="skill-item">Ableton Live</span>
+                        <span class="skill-item">Pro Tools</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+    ============================================
+    CONTACT SECTION
+    ============================================
+    -->
+    <section class="contact" id="contact">
+        <div class="contact-inner">
+            <h2>Let's connect</h2>
+            <p>Open to new opportunities in AI research, particularly in audio and music technology.</p>
+            <div class="contact-links">
+                <a href="mailto:cmsolson75@gmail.com" class="contact-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                    </svg>
+                    cmsolson75@gmail.com
+                </a>
+                <a href="tel:206-499-5258" class="contact-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                    </svg>
+                    206-499-5258
+                </a>
+                <a href="https://github.com/cmsolson75" class="contact-link" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GitHub
+                </a>
+                <a href="https://linkedin.com/in/cameron-olson" class="contact-link" target="_blank" rel="noopener noreferrer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+    ============================================
+    FOOTER
+    ============================================
+    -->
+    <footer>
+        <p>© 2025 Cameron Olson · Seattle, WA</p>
+    </footer>
+
+    <!-- 
+    ============================================
+    JAVASCRIPT
+    Minimal JS for scroll effects
+    ============================================
+    -->
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

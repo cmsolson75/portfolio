@@ -1,0 +1,11 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Static portfolio site ready to deploy.",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs site 4173",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/serve.mjs dist 4173"
+  }
+}
