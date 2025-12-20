@@ -183,7 +183,7 @@ const renderExperience = () => {
     if (!container) return;
     container.innerHTML = '';
 
-    content.work.forEach((item) => {
+    content.experience.forEach((item) => {
         const wrapper = document.createElement('div');
         wrapper.className = 'experience-item';
 
@@ -210,7 +210,7 @@ const renderExperience = () => {
 };
 
 const renderEducation = () => {
-    const container = document.getElementById('education');
+    const container = document.getElementById('education-card');
     if (!container) return;
     const { education } = content;
     container.innerHTML = '';
@@ -320,55 +320,6 @@ const renderCreative = () => {
     });
 };
 
-const renderAbout = () => {
-    const aboutText = document.getElementById('about-text');
-    if (!aboutText) return;
-    aboutText.innerHTML = '';
-
-    content.about.intro.forEach((paragraph) => {
-        const p = document.createElement('p');
-        p.textContent = paragraph;
-        aboutText.append(p);
-    });
-
-    content.about.sections.forEach((section) => {
-        const heading = document.createElement('h3');
-        heading.textContent = section.title;
-        aboutText.append(heading);
-        section.paragraphs.forEach((paragraph) => {
-            const p = document.createElement('p');
-            p.textContent = paragraph;
-            aboutText.append(p);
-        });
-    });
-};
-
-const renderSkills = () => {
-    const skills = document.getElementById('skills');
-    if (!skills) return;
-    skills.innerHTML = '';
-    const skillGroups = [
-        { label: 'Languages', items: content.about.skills.languages },
-        { label: 'ML & Data', items: content.about.skills.ml },
-        { label: 'Infrastructure', items: content.about.skills.infra },
-        { label: 'Audio', items: content.about.skills.audio },
-    ];
-
-    skillGroups.forEach((group) => {
-        const heading = document.createElement('h4');
-        heading.textContent = group.label;
-        const list = document.createElement('div');
-        list.className = 'skill-list';
-        group.items.forEach((skill) => {
-            const pill = document.createElement('span');
-            pill.className = 'skill-item';
-            pill.textContent = skill;
-            list.append(pill);
-        });
-        skills.append(heading, list);
-    });
-};
-
 const renderContact = () => {
     const heading = document.getElementById('contact-heading');
     const description = document.getElementById('contact-description');
@@ -429,8 +380,6 @@ const renderPage = () => {
     renderProjects();
     renderResearch();
     renderCreative();
-    renderAbout();
-    renderSkills();
     renderContact();
     renderFooter();
     setupNavScrollEffect();
