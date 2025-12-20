@@ -7,12 +7,14 @@ CSS VARIABLES - Easy to customize colors
     --bg-primary: #f7f8fc;
     --bg-secondary: #ffffff;
     --bg-card: #ffffff;
+    --bg-soft: #eef2ff;
     --text-primary: #0f172a;
     --text-secondary: #4b5563;
     --text-muted: #94a3b8;
     --accent: #2563eb;
     --accent-dim: #1e40af;
     --border: #e2e8f0;
+    --shadow-soft: 0 18px 48px rgba(15, 23, 42, 0.06);
     --gradient-1: #2563eb;
     --gradient-2: #7c3aed;
 }
@@ -29,7 +31,10 @@ html {
 
 body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--bg-primary);
+    background:
+        radial-gradient(120% 120% at 12% 18%, rgba(37, 99, 235, 0.06), transparent 45%),
+        radial-gradient(110% 110% at 88% 6%, rgba(124, 58, 237, 0.06), transparent 40%),
+        linear-gradient(180deg, #f9fbff 0%, #f5f7fb 50%, #f9fbff 100%);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
@@ -102,8 +107,8 @@ nav.scrolled {
     justify-content: center;
     padding: 5rem 2.5rem 3rem;
     position: relative;
-    max-width: 1000px;
-    margin: 0 auto;
+    max-width: 1100px;
+    margin: 1.5rem auto;
     gap: 0.75rem;
 }
 
@@ -179,9 +184,43 @@ nav.scrolled {
 
 /* Section styles */
 section {
-    padding: 3.5rem 2.5rem;
-    max-width: 1000px;
-    margin: 0 auto;
+    position: relative;
+    padding: 3.75rem 2.75rem;
+    max-width: 1100px;
+    margin: 1.5rem auto;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(249, 250, 255, 0.94));
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    isolation: isolate;
+    scroll-margin-top: 90px;
+}
+
+section:nth-of-type(even) {
+    background: linear-gradient(180deg, #ffffff, var(--bg-soft));
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(120% 120% at 12% 18%, rgba(37, 99, 235, 0.08), transparent 45%),
+        radial-gradient(140% 140% at 88% -8%, rgba(124, 58, 237, 0.07), transparent 42%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+section:nth-of-type(even)::before {
+    background:
+        radial-gradient(120% 120% at 84% 18%, rgba(124, 58, 237, 0.08), transparent 45%),
+        radial-gradient(140% 140% at 10% -8%, rgba(37, 99, 235, 0.07), transparent 42%);
+}
+
+section > * {
+    position: relative;
+    z-index: 1;
 }
 
 .section-title {
@@ -189,17 +228,26 @@ section {
     font-size: 1.75rem;
     font-weight: 400;
     letter-spacing: -0.02em;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.75rem;
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.75rem;
+}
+
+.section-title::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
+    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.08);
 }
 
 .section-title::after {
     content: '';
     flex: 1;
-    height: 1px;
-    background: var(--border);
+    height: 2px;
+    background: linear-gradient(90deg, rgba(37, 99, 235, 0.35), rgba(124, 58, 237, 0.2), transparent);
 }
 
 /* Featured Project */
