@@ -201,12 +201,20 @@ const renderProjects = () => {
         const title = document.createElement('h3');
         title.textContent = project.title;
 
-        const link = createAnchor(
-            { href: project.link, label: '', icon: 'github', iconPosition: 'after', newTab: true },
-            'project-card-link'
-        );
+        const linksWrapper = document.createElement('div');
+        linksWrapper.className = 'project-links';
+        const links = project.links?.length
+            ? project.links
+            : project.link
+              ? [{ href: project.link, label: 'View Project', icon: 'external', newTab: true }]
+              : [];
+        links.forEach((link) => {
+            const anchor = createAnchor({ ...link, iconPosition: link.iconPosition ?? 'before' }, 'project-card-link');
+            linksWrapper.append(anchor);
+        });
 
-        header.append(title, link);
+        header.append(title);
+        if (linksWrapper.childElementCount) header.append(linksWrapper);
 
         const description = document.createElement('p');
         description.textContent = project.description;

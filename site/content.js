@@ -52,24 +52,43 @@ export const content = {
     },
     projects: [
         {
+            title: 'AM I AUIDO - Single Voice to Choir engine',
+            description:
+                'Single-voice-to-choir engine; led R&D end-to-end from data collection and preprocessing through model design/training, deployment, and inference optimization for the production demo.',
+            links: [
+                { label: 'Demo Video', href: 'https://example.com/choir-demo', icon: 'play', newTab: true },
+                { label: 'Project Site', href: 'https://example.com/choir-site', icon: 'external', newTab: true },
+            ],
+            tech: ['Choir Synthesis', 'Data Pipeline', 'Model Deployment', 'Inference Optimization'],
+        },
+        {
             title: 'NanoGrad',
-            link: 'https://github.com/cmsolson75/nanograd',
             description:
                 'PyTorch-style autograd in NumPy with NN wrapper; ops verified within 1e-6 of PyTorch.',
+            links: [{ label: 'GitHub', href: 'https://github.com/cmsolson75/nanograd', icon: 'github', newTab: true }],
             tech: ['Python', 'NumPy', 'Autograd', 'Deep Learning'],
         },
         {
             title: 'Neural Probabilistic Language Model',
-            link: 'https://github.com/cmsolson75/NeuralProbabilisticLanguageModel',
             description:
                 "Reproduction of Bengio's 2003 NPLM: custom SGD (momentum, weight decay), Xavier init, LR decay, hyperparam search.",
+            links: [
+                {
+                    label: 'GitHub',
+                    href: 'https://github.com/cmsolson75/NeuralProbabilisticLanguageModel',
+                    icon: 'github',
+                    newTab: true,
+                },
+            ],
             tech: ['PyTorch', 'Language Models', 'Paper Implementation'],
         },
         {
             title: 'Loan Approval System',
-            link: 'https://github.com/cmsolson75/loan-approval-system',
             description:
                 'Educational reference architecture for ML deployment. Intentionally simple model—the challenge is everything else: PyTorch → ONNX → FastAPI → Go gateway → Docker Compose → VPS. Built to answer the question students always ask: "How do you actually deploy a model?"',
+            links: [
+                { label: 'GitHub', href: 'https://github.com/cmsolson75/loan-approval-system', icon: 'github', newTab: true },
+            ],
             tech: ['PyTorch', 'ONNX', 'FastAPI', 'Go', 'Docker', 'HTMX'],
         },
     ],

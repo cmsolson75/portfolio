@@ -78,7 +78,7 @@ nav.scrolled {
 
 .logo {
     font-family: 'Instrument Serif', serif;
-    font-size: 1.35rem;
+    font-size: 1.5rem;
     font-weight: 400;
     letter-spacing: -0.02em;
 }
@@ -92,7 +92,7 @@ nav.scrolled {
 .nav-links a {
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     font-weight: 400;
     transition: color 0.2s ease;
 }
@@ -121,7 +121,7 @@ nav.scrolled {
 
 .hero h1 {
     font-family: 'Instrument Serif', serif;
-    font-size: clamp(2.4rem, 6vw, 3.75rem);
+    font-size: clamp(2.6rem, 6.5vw, 4rem);
     font-weight: 400;
     line-height: 1.05;
     letter-spacing: -0.03em;
@@ -129,7 +129,7 @@ nav.scrolled {
 }
 
 .hero-bio {
-    font-size: 1.05rem;
+    font-size: 1.12rem;
     color: var(--text-secondary);
     max-width: 620px;
     line-height: 1.6;
@@ -146,7 +146,7 @@ nav.scrolled {
 }
 
 .hero-location {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: var(--text-muted);
     margin-bottom: 1.25rem;
     display: flex;
@@ -171,7 +171,7 @@ nav.scrolled {
     gap: 0.4rem;
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     padding: 0.5rem 1rem;
     background: var(--bg-secondary);
     border: 1px solid var(--border);
@@ -217,7 +217,7 @@ section + section {
 
 .section-title {
     font-family: 'Instrument Serif', serif;
-    font-size: 1.75rem;
+    font-size: 1.85rem;
     font-weight: 400;
     letter-spacing: -0.02em;
     margin-bottom: 1.75rem;
@@ -367,24 +367,24 @@ section + section {
 
 .experience-item h3 {
     font-family: 'Instrument Serif', serif;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 400;
 }
 
 .experience-date {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
 }
 
 .experience-company {
     color: var(--accent);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 0.5rem;
 }
 
 .experience-description {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     line-height: 1.6;
 }
 
@@ -399,20 +399,20 @@ section + section {
 
 .education-item h3 {
     font-family: 'Instrument Serif', serif;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 400;
     margin-bottom: 0.25rem;
 }
 
 .education-item .school {
     color: var(--accent);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 0.5rem;
 }
 
 .education-item p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
 }
 
 /* Projects Grid */
@@ -437,34 +437,55 @@ section + section {
 .project-card-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
+    gap: 0.75rem;
     margin-bottom: 0.5rem;
+    flex-wrap: wrap;
 }
 
 .project-card h3 {
     font-family: 'Instrument Serif', serif;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 400;
 }
 
+.project-links {
+    display: flex;
+    gap: 0.45rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
 .project-card-link {
-    color: var(--text-muted);
-    transition: color 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-secondary);
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem 0.65rem;
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 1;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
     flex-shrink: 0;
 }
 
 .project-card-link:hover {
     color: var(--text-primary);
+    border-color: var(--accent);
+    background: var(--bg-secondary);
 }
 
 .project-card-link svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
 }
 
 .project-card p {
     color: var(--text-secondary);
-    font-size: 0.875rem;
+    font-size: 0.95rem;
     margin-bottom: 1rem;
     line-height: 1.6;
 }
@@ -479,7 +500,7 @@ section + section {
     padding: 0.2rem 0.5rem;
     background: var(--bg-primary);
     border-radius: 4px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
 }
 
@@ -498,20 +519,20 @@ section + section {
 
 .research-card h3 {
     font-family: 'Instrument Serif', serif;
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 400;
     margin-bottom: 0.5rem;
 }
 
 .research-meta {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     margin-bottom: 0.75rem;
 }
 
 .research-card p {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 1rem;
     line-height: 1.65;
 }
@@ -528,7 +549,7 @@ section + section {
     gap: 0.35rem;
     color: var(--text-secondary);
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     transition: color 0.2s ease;
 }
 
@@ -564,7 +585,7 @@ section + section {
 }
 
 .creative-item h4 {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 500;
     margin-bottom: 0.4rem;
     color: var(--text-primary);
@@ -572,13 +593,13 @@ section + section {
 
 .creative-item p {
     color: var(--text-secondary);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     line-height: 1.5;
 }
 
 .creative-item .tag {
     display: inline-block;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--accent);
@@ -604,7 +625,7 @@ section + section {
 
 .about-text h3 {
     font-family: 'Instrument Serif', serif;
-    font-size: 1.35rem;
+    font-size: 1.4rem;
     font-weight: 400;
     margin-bottom: 1rem;
     margin-top: 2rem;
@@ -616,7 +637,7 @@ section + section {
 
 .about-text p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 1rem;
     line-height: 1.75;
     margin-bottom: 1rem;
 }
@@ -649,7 +670,7 @@ section + section {
     background: var(--bg-primary);
     border: 1px solid var(--border);
     border-radius: 5px;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
 }
 
@@ -666,14 +687,14 @@ section + section {
 
 .contact h2 {
     font-family: 'Instrument Serif', serif;
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-size: clamp(1.9rem, 4.5vw, 2.65rem);
     font-weight: 400;
     margin-bottom: 0.75rem;
 }
 
 .contact p {
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: 1.05rem;
     margin-bottom: 1.5rem;
 }
 
@@ -694,7 +715,7 @@ section + section {
     border-radius: 6px;
     color: var(--text-primary);
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.92rem;
     transition: all 0.2s ease;
 }
 
@@ -717,7 +738,7 @@ footer {
 
 footer p {
     color: var(--text-muted);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 }
 
 /* Responsive */
