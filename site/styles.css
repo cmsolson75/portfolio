@@ -17,6 +17,7 @@ CSS VARIABLES - Easy to customize colors
     --shadow-soft: 0 18px 48px rgba(15, 23, 42, 0.06);
     --gradient-1: #2563eb;
     --gradient-2: #7c3aed;
+    --accent-rgb: 37, 99, 235;
 }
 
 * {
@@ -32,9 +33,9 @@ html {
 body {
     font-family: 'DM Sans', sans-serif;
     background:
-        radial-gradient(120% 120% at 12% 18%, rgba(37, 99, 235, 0.06), transparent 45%),
-        radial-gradient(110% 110% at 88% 6%, rgba(124, 58, 237, 0.06), transparent 40%),
-        linear-gradient(180deg, #f9fbff 0%, #f5f7fb 50%, #f9fbff 100%);
+        radial-gradient(140% 140% at 15% 10%, rgba(15, 23, 42, 0.02), transparent 40%),
+        radial-gradient(140% 140% at 85% 0%, rgba(15, 23, 42, 0.025), transparent 42%),
+        linear-gradient(180deg, #f8fafc 0%, #f4f6f9 50%, #f8fafc 100%);
     color: var(--text-primary);
     line-height: 1.6;
     overflow-x: hidden;
@@ -105,11 +106,17 @@ nav.scrolled {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 5rem 2.5rem 3rem;
+    padding: 4.75rem 2.6rem 3.1rem;
     position: relative;
     max-width: 1100px;
     margin: 1.5rem auto;
     gap: 0.75rem;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    border-radius: 18px;
+    box-shadow:
+        0 14px 40px rgba(15, 23, 42, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
 }
 
 .hero h1 {
@@ -185,42 +192,27 @@ nav.scrolled {
 /* Section styles */
 section {
     position: relative;
-    padding: 3.75rem 2.75rem;
+    padding: 3.25rem 2.75rem;
     max-width: 1100px;
-    margin: 1.5rem auto;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(249, 250, 255, 0.94));
-    border: 1px solid var(--border);
+    margin: 2.2rem auto;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.08);
     border-radius: 18px;
-    box-shadow: var(--shadow-soft);
+    box-shadow:
+        0 14px 40px rgba(15, 23, 42, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.75);
     overflow: hidden;
     isolation: isolate;
-    scroll-margin-top: 90px;
-}
-
-section:nth-of-type(even) {
-    background: linear-gradient(180deg, #ffffff, var(--bg-soft));
-}
-
-section::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(120% 120% at 12% 18%, rgba(37, 99, 235, 0.08), transparent 45%),
-        radial-gradient(140% 140% at 88% -8%, rgba(124, 58, 237, 0.07), transparent 42%);
-    pointer-events: none;
-    z-index: 0;
-}
-
-section:nth-of-type(even)::before {
-    background:
-        radial-gradient(120% 120% at 84% 18%, rgba(124, 58, 237, 0.08), transparent 45%),
-        radial-gradient(140% 140% at 10% -8%, rgba(37, 99, 235, 0.07), transparent 42%);
+    scroll-margin-top: 96px;
 }
 
 section > * {
     position: relative;
     z-index: 1;
+}
+
+section + section {
+    margin-top: 2.6rem;
 }
 
 .section-title {
@@ -239,15 +231,15 @@ section > * {
     width: 12px;
     height: 12px;
     border-radius: 999px;
-    background: linear-gradient(135deg, var(--gradient-1), var(--gradient-2));
-    box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.08);
+    background: var(--text-primary);
+    box-shadow: 0 0 0 8px rgba(15, 23, 42, 0.05);
 }
 
 .section-title::after {
     content: '';
     flex: 1;
     height: 2px;
-    background: linear-gradient(90deg, rgba(37, 99, 235, 0.35), rgba(124, 58, 237, 0.2), transparent);
+    background: linear-gradient(90deg, rgba(15, 23, 42, 0.16), rgba(15, 23, 42, 0.08), transparent);
 }
 
 /* Featured Project */
