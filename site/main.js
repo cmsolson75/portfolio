@@ -138,46 +138,6 @@ const renderHero = () => {
     });
 };
 
-const renderFeatured = () => {
-    const container = document.getElementById('featured-project');
-    if (!container) return;
-    const { featured } = content;
-
-    container.innerHTML = '';
-
-    const label = document.createElement('div');
-    label.className = 'featured-label';
-    label.textContent = featured.label;
-
-    const title = document.createElement('h3');
-    title.textContent = featured.title;
-
-    const company = document.createElement('div');
-    company.className = 'featured-company';
-    company.textContent = featured.company;
-
-    const description = document.createElement('p');
-    description.className = 'featured-description';
-    description.textContent = featured.description;
-
-    const highlights = document.createElement('div');
-    highlights.className = 'featured-highlights';
-    featured.highlights.forEach((item) => {
-        const card = document.createElement('div');
-        card.className = 'highlight-item';
-        const h4 = document.createElement('h4');
-        h4.textContent = item.title;
-        const p = document.createElement('p');
-        p.textContent = item.detail;
-        card.append(h4, p);
-        highlights.append(card);
-    });
-
-    const cta = createAnchor(featured.cta, 'project-link');
-
-    container.append(label, title, company, description, highlights, cta);
-};
-
 const renderExperience = () => {
     const container = document.getElementById('experience-list');
     if (!container) return;
@@ -374,7 +334,6 @@ const renderPage = () => {
     setMeta(content.meta);
     renderNav();
     renderHero();
-    renderFeatured();
     renderExperience();
     renderEducation();
     renderProjects();

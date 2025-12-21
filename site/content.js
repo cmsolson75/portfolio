@@ -12,7 +12,6 @@ export const content = {
     nav: {
         name: 'Cameron Olson',
         links: [
-            { label: 'Featured', href: '#featured' },
             { label: 'Experience', href: '#experience' },
             { label: 'Projects', href: '#projects' },
             { label: 'Research', href: '#research' },
@@ -30,27 +29,13 @@ export const content = {
             { label: 'LinkedIn', href: 'https://www.linkedin.com/in/cameron-olson-aaba85201/', icon: 'linkedin', newTab: true },
         ],
     },
-    featured: {
-        label: 'Featured Project',
-        title: 'AM I AUDIO Choir Synthesis R&D',
-        company: 'VCL · Lead AI Research Engineer',
-        description:
-            'Neural choir synthesis engine that turns one voice into many. Built the core model, harmony system, and training pipeline.',
-        highlights: [
-            { title: 'Data Pipeline', detail: 'Built augmentation systems extending pitch range by 4+ octaves' },
-            { title: 'Infrastructure', detail: 'Scalable GCP training with PyTorch, Lightning & W&B' },
-            { title: 'Deployment', detail: 'FastAPI on Cloud Run / Vertex AI with GPU acceleration' },
-            { title: 'On-Device', detail: 'ONNX export pipeline for VST plugin integration' },
-        ],
-        cta: { label: 'View AM I AUDIO', href: 'https://amiaudio.io/', icon: 'arrow', iconPosition: 'after' },
-    },
     experience: [
         {
             title: 'Lead AI Research Engineer',
             company: 'VCL Audio',
             date: 'Nov 2023 — Present',
             description:
-                'Lead DSP/modeling team; shipped choir synthesis and harmony engine. Scaled GCP training + FastAPI deployment with GPU acceleration.',
+                'Led choir synthesis R&D end-to-end: directed singer data collection/cleaning, designed and tuned the model architecture, built Hydra/Lightning/W&B training on GCP, and shipped a FastAPI deployment for beta users.',
         },
         {
             title: 'Assistant Professor, Electronic Production & Design',
@@ -119,7 +104,7 @@ export const content = {
         creative: [
             {
                 tag: 'AI Song Contest 2025 · Finalist',
-                title: 'Dadabots Collaboration',
+                title: 'Dadabots',
                 description:
                     'Vocal design for finalist entry in the international AI Song Contest, collaborating with the Dadabots collective.',
                 href: 'https://www.aisongcontest.com/participants-2025/dadabots',
