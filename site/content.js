@@ -21,7 +21,7 @@ export const content = {
     },
     hero: {
         heading: 'AI Research Engineer',
-        bio: 'Building generative audio and speech systems end-to-end—modeling, data, and deployment. Led choir synthesis at VCL and ship reliable ML infra for creative teams.',
+        bio: 'I am an AI Research Engineer at VCL Audio / AM I AUDIO, leading R&D across model architecture, training, and data systems for generative audio. My work focuses on turning deep learning research into production-ready AI tools that musicians actually want to use.',
         location: 'Seattle, WA',
         links: [
             { label: 'Email', href: 'mailto:cmsolson75@gmail.com', icon: 'mail' },
@@ -35,7 +35,7 @@ export const content = {
             company: 'VCL Audio',
             date: 'Nov 2023 — Present',
             description:
-                'Led choir synthesis R&D end-to-end: directed singer data collection/cleaning, designed and tuned the model architecture, built Hydra/Lightning/W&B training on GCP, and shipped a FastAPI deployment for beta users.',
+                'Lead R&D for VCL’s generative choir synthesis stack: owned singer dataset strategy and QA, designed and trained the core models, and built scalable PyTorch + Hydra training on GCP. Shipped the beta inference service and integration path via FastAPI, with profiling/optimization for production latency.'
         },
         {
             title: 'Assistant Professor, Electronic Production & Design',
