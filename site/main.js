@@ -219,6 +219,17 @@ const renderProjects = () => {
         const description = document.createElement('p');
         description.textContent = project.description;
 
+        let detailsList;
+        if (project.details?.length) {
+            detailsList = document.createElement('ul');
+            detailsList.className = 'project-details';
+            project.details.forEach((detail) => {
+                const li = document.createElement('li');
+                li.textContent = detail;
+                detailsList.append(li);
+            });
+        }
+
         const techList = document.createElement('div');
         techList.className = 'project-tech';
         project.tech.forEach((item) => {
@@ -227,7 +238,9 @@ const renderProjects = () => {
             techList.append(chip);
         });
 
-        card.append(header, description, techList);
+        card.append(header, description);
+        if (detailsList) card.append(detailsList);
+        card.append(techList);
         grid.append(card);
     });
 };

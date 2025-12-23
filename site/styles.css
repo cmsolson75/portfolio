@@ -490,6 +490,21 @@ section + section {
     line-height: 1.6;
 }
 
+.project-details {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.55;
+    padding-left: 1.1rem;
+    margin: 0 0 1rem;
+    display: grid;
+    gap: 0.45rem;
+    list-style: disc;
+}
+
+.project-details li {
+    margin: 0;
+}
+
 .project-tech {
     display: flex;
     flex-wrap: wrap;
