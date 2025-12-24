@@ -64,8 +64,8 @@ export const content = {
                 'Deployed an optimized FastAPI inference service for the production demo, including profiling-driven latency and memory optimizations.',
             ],
             links: [
-                { label: 'Demo Video', href: 'https://example.com/choir-demo', icon: 'play', newTab: true },
-                { label: 'Project Site', href: 'https://example.com/choir-site', icon: 'external', newTab: true },
+                { label: 'Demo Video', href: 'https://youtu.be/KpbuQZgpIAM', icon: 'play', newTab: true },
+                { label: 'Project Site', href: 'https://amiaudio.io/', icon: 'external', newTab: true },
             ],
             tech: [
                 'Generative Audio',
