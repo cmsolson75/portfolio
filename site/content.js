@@ -58,7 +58,7 @@ export const content = {
             details: [
                 'Designed and executed singer data collection across controlled pitch ranges, vowel sets, dynamics, and articulation, with automated QA and pitch validation.',
                 'Built data pipelines to extend usable vocal pitch ranges by over four octaves via augmentation and resynthesis strategies.',
-                'Designed and trained the core generative models, focusing on pitch conditioning, timbral consistency, and controllable harmonic dispersion.',
+                'Designed and trained the core generative models, focusing on pitch conditioning, timbral consistency, and phonetic fidelity.',
                 'Implemented reproducible training workflows on Google Cloud Platform using PyTorch and Hydra, with experiment tracking and model versioning.',
                 'Developed a scale-aware Harmony Engine enabling musically constrained chord generation from a single input voice.',
                 'Deployed an optimized FastAPI inference service for the production demo, including profiling-driven latency and memory optimizations.',
